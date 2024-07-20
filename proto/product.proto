@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option go_package = "/api-gateway";
+
+package proto;
+
+service ProductService {
+  rpc GetProductByID (ProductRequest) returns (ProductResponse);
+  rpc GetProducts (Empty) returns (ProductsResponse);
+  rpc CreateProduct (CreateProductRequest) returns (ProductResponse);
+  rpc UpdateProduct (UpdateProductRequest) returns (ProductResponse);
+  rpc DeleteProduct (DeleteProductRequest) returns (Empty);
+}
+
+service OrderService {
+  rpc PlaceOrder (OrderRequest) returns (OrderResponse);
+  rpc GetOrders (Empty) returns (OrdersResponse);
+}
+
+message ProductRequest {
+  string id = 1;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  float price = 3;
+  int32 quantity = 4;
+}
+
+message UpdateProductRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int32 quantity = 5;
+}
+
+message DeleteProductRequest {
+  string id = 1;
+}
+
+message ProductResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int32 quantity = 5;
+}
+
+message ProductsResponse {
+    repeated ProductResponse products = 1;
+  }
+
+message OrderRequest {
+  repeated OrderItem items = 1;
+}
+
+message OrderItem {
+  string product_id = 1;
+  int32 quantity = 2;
+}
+
+message OrderResponse {
+  string id = 1;
+  repeated OrderItem items = 2;
+  float total = 3;
+}
+
+message OrdersResponse {
+  repeated OrderResponse orders = 1;
+}
+
+message Empty {}
