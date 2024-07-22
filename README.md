@@ -12,6 +12,16 @@ Please contact vadgun@hotmail.com to learn more.
 
 The API CRUD gRPC over HTTP application, recieve incoming HTTP request to CREATE, READ, DELETE, and EDIT a product, and also you can create Orders with that products.
 
+## Installation
+Build the image
+```bash
+docker build -t my-go-app .
+```
+
+Run the image on detach exposing 8080 port
+```bash
+docker run -d -p 8080:8080 --name my-go-running-app my-go-app
+```
 ## Functional Details
 
 - First you will need to get a JWT to get access to CRUD operations, the application queries a POST request to /login to get access and responds a JWT, based on username and password parameters like this
