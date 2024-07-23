@@ -128,4 +128,5 @@ func GrpcServer() {
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+	defer grpcServer.GracefulStop()
 }
